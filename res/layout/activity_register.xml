@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.percent.PercentRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background" >
+
+    <!-- 背景 -->
+
+    <android.support.percent.PercentRelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_alignParentTop="true"
+        app:layout_heightPercent="35%h" >
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_centerInParent="true"
+            app:layout_heightPercent="38%h"
+            app:layout_widthPercent="27%w"
+            android:contentDescription="@string/todo"
+            android:src="@drawable/user_bg" />
+    </android.support.percent.PercentRelativeLayout>
+
+    <android.support.percent.PercentRelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        app:layout_heightPercent="65%h" >
+
+        <!-- 昵称 -->
+
+        <ImageView
+            android:id="@+id/img_register_name"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_alignParentLeft="true"
+            app:layout_heightPercent="11%h"
+            app:layout_marginLeftPercent="11%w"
+            app:layout_widthPercent="10%w"
+            android:contentDescription="@string/todo"
+            android:src="@drawable/user" />
+
+        <EditText
+            android:id="@+id/edt_register_name"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_alignLeft="@+id/img_register_name"
+            app:layout_heightPercent="13%h"
+            app:layout_marginLeftPercent="12%w"
+            app:layout_widthPercent="70%w"
+            android:hint="@string/user_name"
+            android:inputType="text"
+            android:maxLines="1" />
+
+        <!-- 手机号码 -->
+
+        <ImageView
+            android:id="@+id/img_register_phone"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignTop="@+id/img_register_name"
+            app:layout_heightPercent="12%h"
+            app:layout_marginLeftPercent="11%w"
+            app:layout_marginTopPercent="16%w"
+            app:layout_widthPercent="8%w"
+            android:contentDescription="@string/todo"
+            android:src="@drawable/phone" />
+
+        <EditText
+            android:id="@+id/edt_register_phone"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_alignLeft="@+id/edt_register_name"
+            android:layout_alignTop="@+id/edt_register_name"
+            app:layout_heightPercent="14%h"
+            app:layout_marginTopPercent="16%w"
+            app:layout_widthPercent="70%w"
+            android:hint="@string/set_phone"
+            android:inputType="phone"
+            android:maxLength="11" />
+
+        <!-- 密码 -->
+
+        <ImageView
+            android:id="@+id/img_register_pw"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignTop="@+id/img_register_phone"
+            app:layout_heightPercent="11%h"
+            app:layout_marginLeftPercent="11%w"
+            app:layout_marginTopPercent="16%w"
+            app:layout_widthPercent="10%w"
+            android:contentDescription="@string/todo"
+            android:src="@drawable/password" />
+
+        <EditText
+            android:id="@+id/edt_register_pw"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_alignLeft="@+id/edt_register_phone"
+            android:layout_alignTop="@+id/edt_register_phone"
+            app:layout_heightPercent="13%h"
+            app:layout_marginTopPercent="16%w"
+            app:layout_widthPercent="70%w"
+            android:hint="@string/set_password"
+            android:inputType="textPassword"
+            android:maxLength="16" />
+
+        <ImageButton
+            android:id="@+id/ibtn_register_invisible"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_alignRight="@+id/edt_register_pw"
+            android:layout_alignTop="@+id/img_register_pw"
+            app:layout_heightPercent="7%h"
+            app:layout_marginTopPercent="3%w"
+            app:layout_widthPercent="10%w"
+            android:background="@drawable/invisible"
+            android:contentDescription="@string/todo" />
+
+        <!-- 验证码 -->
+
+        <ImageView
+            android:id="@+id/img_register_code"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignTop="@+id/img_register_pw"
+            app:layout_heightPercent="12%h"
+            app:layout_marginLeftPercent="10%w"
+            app:layout_marginTopPercent="16%w"
+            app:layout_widthPercent="11%w"
+            android:contentDescription="@string/todo"
+            android:src="@drawable/code" />
+
+        <EditText
+            android:id="@+id/edt_register_code"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_alignLeft="@+id/edt_register_pw"
+            android:layout_alignTop="@+id/edt_register_pw"
+            app:layout_heightPercent="14%h"
+            app:layout_marginTopPercent="16%w"
+            app:layout_widthPercent="70%w"
+            android:hint="@string/code"
+            android:inputType="number" />
+
+        <Button
+            android:id="@+id/btn_register_code"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_alignRight="@+id/edt_register_code"
+            android:layout_alignTop="@+id/img_register_code"
+            app:layout_heightPercent="12%h"
+            android:text="@string/get_code" />
+
+        <!-- 注册按钮 -->
+
+        <Button
+            android:id="@+id/btn_register"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_alignTop="@+id/img_register_code"
+            android:layout_centerHorizontal="true"
+            app:layout_heightPercent="15%h"
+            app:layout_marginTopPercent="17%w"
+            app:layout_widthPercent="80%w"
+            android:background="@drawable/shape"
+            android:text="@string/register"
+            android:textColor="#FFFFFF" />
+
+        <!-- 已有账号，登录 -->
+
+        <TextView
+            android:id="@+id/txt_register_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignRight="@+id/btn_register"
+            android:layout_alignTop="@+id/btn_register"
+            app:layout_marginTopPercent="15%w"
+            android:clickable="true"
+            android:text="@string/now_login"
+            android:textColor="#FFFFFF" />
+    </android.support.percent.PercentRelativeLayout>
+
+</android.support.percent.PercentRelativeLayout>

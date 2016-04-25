@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.percent.PercentRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/personalbg" >
+
+    <android.support.percent.PercentRelativeLayout
+        android:id="@+id/rlayout_personal"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        app:layout_heightPercent="36%h" >
+
+        <ImageButton
+            android:id="@+id/ibtn_personalpg_setting"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_alignParentTop="true"
+            app:layout_heightPercent="8%w"
+            app:layout_marginLeftPercent="2%w"
+            app:layout_marginTopPercent="2%w"
+            app:layout_widthPercent="8%w"
+            android:background="@drawable/setting"
+            android:contentDescription="@string/todo" />
+
+        <ImageButton
+            android:id="@+id/ibtn_personalpg_msg"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            app:layout_heightPercent="8%w"
+            app:layout_marginRightPercent="2%w"
+            app:layout_marginTopPercent="2%w"
+            app:layout_widthPercent="8%w"
+            android:background="@drawable/msg"
+            android:contentDescription="@string/todo" />
+
+        <android.support.percent.PercentFrameLayout 
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_alignParentTop="true"
+            app:layout_heightPercent="60%h"
+            app:layout_marginTopPercent="10%w">
+            
+            <ImageButton
+            android:id="@+id/ibtn_personalpg_img"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_gravity="center_horizontal"
+            app:layout_heightPercent="60%h"
+            app:layout_widthPercent="25%w"
+            android:contentDescription="@string/todo"
+            android:src="@drawable/user" />
+
+        <TextView
+            android:id="@+id/tv_personalpg_name"
+            android:layout_gravity="center_vertical"
+            app:layout_marginBottomPercent="60%w"
+            android:text="@string/nonlogin"
+            android:textColor="#ffffff"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/tv_personalpg_text"
+            android:layout_gravity="bottom"
+            android:text="@string/nothing"
+            android:textColor="#ffffff"
+            android:textSize="14sp" />
+        </android.support.percent.PercentFrameLayout>
+        
+
+        <android.support.percent.PercentFrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_alignParentBottom="true"
+            app:layout_marginBottomPercent="2%w"
+            app:layout_heightPercent="15%h" >
+
+            <ImageView
+                android:id="@+id/img_personalpg_collect"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                app:layout_widthPercent="10%w"
+                android:contentDescription="@string/todo"
+                android:src="@drawable/collect" />
+
+            <TextView
+                android:id="@+id/tv_personalpg_collectnum"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                app:layout_marginRightPercent="38%w"
+                android:text="@string/_0"
+                android:textColor="#ffffff" 
+                android:textSize="20sp"/>
+
+            <ImageView
+                android:id="@+id/img_personalpg_like"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="left"
+                app:layout_marginLeftPercent="20%w"
+                app:layout_widthPercent="10%w"
+                android:contentDescription="@string/todo"
+                android:src="@drawable/like" />
+            
+            <TextView
+                android:id="@+id/tv_personalpg_likenum"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                app:layout_marginLeftPercent="32%w"
+                android:text="@string/_0"
+                android:textColor="#ffffff" 
+                android:textSize="20sp"/>
+            
+
+            <ImageView
+                android:id="@+id/img_personalpg_cite"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="right"
+                app:layout_marginRightPercent="20%w"
+                app:layout_widthPercent="10%w"
+                android:contentDescription="@string/todo"
+                android:src="@drawable/cite" />
+            
+            <TextView
+                android:id="@+id/tv_personalpg_citenum"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                app:layout_marginRightPercent="13%w"
+                android:text="@string/_0"
+                android:textColor="#ffffff" 
+                android:textSize="20sp"/>
+            
+
+        </android.support.percent.PercentFrameLayout>
+    </android.support.percent.PercentRelativeLayout>
+
+    <android.support.percent.PercentRelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_below="@+id/rlayout_personal"
+        app:layout_heightPercent="6%h" >
+
+        <Button
+            android:id="@+id/btn_personalpg_questioned"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_widthPercent="33%w"
+            android:background="#FFFFFF"
+            android:text="@string/questioned"
+            android:textColor="#141414" />
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/btn_personalpg_questioned"
+            app:layout_heightPercent="50%h"
+            app:layout_widthPercent="0.3%w"
+            android:background="#ff000000"
+            android:contentDescription="@string/todo" />
+
+        <Button
+            android:id="@+id/btn_personalpg_answered"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            app:layout_widthPercent="33%w"
+            android:background="#FFFFFF"
+            android:text="@string/answered"
+            android:textColor="#141414" />
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/btn_personalpg_answered"
+            app:layout_heightPercent="50%h"
+            app:layout_widthPercent="0.3%w"
+            android:background="#ff000000"
+            android:contentDescription="@string/todo" />
+
+        <Button
+            android:id="@+id/btn_personalpg_collected"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            app:layout_widthPercent="33%w"
+            android:background="#FFFFFF"
+            android:text="@string/collected"
+            android:textColor="#141414" />
+    </android.support.percent.PercentRelativeLayout>
+
+    <android.support.percent.PercentRelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_alignParentBottom="true"
+        app:layout_heightPercent="20%h"
+        android:background="#f0f0f0" >
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_alignParentTop="true"
+            app:layout_heightPercent="1%h"
+            app:layout_marginTopPercent="10%w"
+            android:background="#5c5959"
+            android:contentDescription="@string/todo" />
+
+        <Button
+            android:id="@+id/btn_personalpg_home"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            app:layout_heightPercent="68%h"
+            app:layout_widthPercent="18%w"
+            android:background="#00f0f0f0"
+            android:drawableTop="@drawable/home"
+            android:text="@string/home"
+            android:textColor="#5c5959"
+            android:textSize="14sp" />
+
+        <Button
+            android:id="@+id/btn_personalpg_community"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_alignParentBottom="true"
+            android:layout_toRightOf="@+id/btn_personalpg_home"
+            app:layout_heightPercent="70%h"
+            app:layout_widthPercent="18%w"
+            android:background="#00f0f0f0"
+            android:drawableTop="@drawable/community"
+            android:paddingTop="8dp"
+            android:text="@string/community"
+            android:textColor="#5c5959"
+            android:textSize="14sp" />
+
+        <Button
+            android:id="@+id/btn_personalpg_ideas"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_alignParentBottom="true"
+            android:layout_toLeftOf="@+id/btn_personalpg_mypage"
+            app:layout_heightPercent="70%h"
+            app:layout_widthPercent="18%w"
+            android:background="#00f0f0f0"
+            android:drawableTop="@drawable/ideas"
+            android:paddingTop="8dp"
+            android:text="@string/ideas"
+            android:textColor="#5c5959"
+            android:textSize="14sp" />
+
+        <Button
+            android:id="@+id/btn_personalpg_mypage"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            app:layout_heightPercent="70%h"
+            app:layout_widthPercent="18%w"
+            android:background="#00f0f0f0"
+            android:drawableTop="@drawable/my"
+            android:paddingTop="8dp"
+            android:text="@string/my"
+            android:textColor="#5c5959"
+            android:textSize="14sp" />
+
+        <Button
+            android:id="@+id/btn_personalpg_release"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            app:layout_heightPercent="80%h"
+            app:layout_widthPercent="23%w"
+            android:background="@drawable/release" />
+    </android.support.percent.PercentRelativeLayout>
+
+</android.support.percent.PercentRelativeLayout>
