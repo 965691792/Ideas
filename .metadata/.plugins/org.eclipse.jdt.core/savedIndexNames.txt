@@ -1,0 +1,2 @@
+INDEX VERSION 1.126+E:\quanta±­\Ideas\Ideas\.metadata\.plugins\org.eclipse.jdt.core
+3504292072.index
