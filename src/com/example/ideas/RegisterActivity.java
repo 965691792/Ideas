@@ -17,7 +17,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.text.Editable;
 import android.text.InputType;
+import android.text.TextWatcher;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -54,6 +56,10 @@ public class RegisterActivity extends Activity implements OnClickListener {
 	// 密码可见
 	private Button ibtn_register_invisible;
 
+	// 删除按钮
+	private Button bt_register_name_delete;
+	private Button bt_register_phone_delete;
+
 	private boolean ready;
 
 	@Override
@@ -70,8 +76,56 @@ public class RegisterActivity extends Activity implements OnClickListener {
 		btn_register = (Button) findViewById(R.id.btn_register);
 		txt_register_login = (TextView) findViewById(R.id.txt_register_login);
 		ibtn_register_invisible = (Button) findViewById(R.id.ibtn_register_invisible);
+		bt_register_name_delete = (Button) findViewById(R.id.bt_register_name_delete);
+		bt_register_phone_delete = (Button) findViewById(R.id.bt_register_phone_delete);
 
 		initSDK();
+
+		edt_register_name.addTextChangedListener(new TextWatcher() {
+
+			@Override
+			public void onTextChanged(CharSequence s, int start, int before,
+					int count) {
+				// TODO Auto-generated method stub
+				setNameButtonVisibility();
+			}
+
+			@Override
+			public void beforeTextChanged(CharSequence s, int start, int count,
+					int after) {
+				// TODO Auto-generated method stub
+				setNameButtonVisibility();
+			}
+
+			@Override
+			public void afterTextChanged(Editable s) {
+				// TODO Auto-generated method stub
+				setNameButtonVisibility();
+			}
+		});
+
+		edt_register_phone.addTextChangedListener(new TextWatcher() {
+
+			@Override
+			public void onTextChanged(CharSequence s, int start, int before,
+					int count) {
+				// TODO Auto-generated method stub
+				setPhoneButtonVisibility();
+			}
+
+			@Override
+			public void beforeTextChanged(CharSequence s, int start, int count,
+					int after) {
+				// TODO Auto-generated method stub
+				setPhoneButtonVisibility();
+			}
+
+			@Override
+			public void afterTextChanged(Editable s) {
+				// TODO Auto-generated method stub
+				setPhoneButtonVisibility();
+			}
+		});
 
 		// 点击获取验证码
 		btn_register_code.setOnClickListener(new OnClickListener() {
@@ -248,5 +302,37 @@ public class RegisterActivity extends Activity implements OnClickListener {
 	@Override
 	protected void onPause() {
 		super.onPause();
+	}
+
+	public void setNameButtonVisibility() {
+		if (edt_register_name.getText().toString().length() == 0) {
+			bt_register_name_delete.setVisibility(View.INVISIBLE);
+		} else {
+			bt_register_name_delete.setVisibility(View.VISIBLE);
+			bt_register_name_delete.setOnClickListener(new OnClickListener() {
+
+				@Override
+				public void onClick(View v) {
+					// TODO Auto-generated method stub
+					edt_register_name.getText().clear();
+				}
+			});
+		}
+	}
+
+	public void setPhoneButtonVisibility() {
+		if (edt_register_phone.getText().toString().length() == 0) {
+			bt_register_phone_delete.setVisibility(View.INVISIBLE);
+		} else {
+			bt_register_phone_delete.setVisibility(View.VISIBLE);
+			bt_register_phone_delete.setOnClickListener(new OnClickListener() {
+
+				@Override
+				public void onClick(View v) {
+					// TODO Auto-generated method stub
+					edt_register_phone.getText().clear();
+				}
+			});
+		}
 	}
 }

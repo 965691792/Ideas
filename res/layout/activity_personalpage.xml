@@ -38,46 +38,45 @@
             android:background="@drawable/msg"
             android:contentDescription="@string/todo" />
 
-        <android.support.percent.PercentFrameLayout 
+        <android.support.percent.PercentFrameLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_alignParentTop="true"
             app:layout_heightPercent="60%h"
-            app:layout_marginTopPercent="10%w">
-            
+            app:layout_marginTopPercent="10%w" >
+
             <ImageButton
-            android:id="@+id/ibtn_personalpg_img"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_gravity="center_horizontal"
-            app:layout_heightPercent="60%h"
-            app:layout_widthPercent="25%w"
-            android:contentDescription="@string/todo"
-            android:src="@drawable/user" />
+                android:id="@+id/ibtn_personalpg_img"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_gravity="center_horizontal"
+                app:layout_heightPercent="60%h"
+                app:layout_widthPercent="25%w"
+                android:contentDescription="@string/todo"
+                android:src="@drawable/user" />
 
-        <TextView
-            android:id="@+id/tv_personalpg_name"
-            android:layout_gravity="center_vertical"
-            app:layout_marginBottomPercent="60%w"
-            android:text="@string/nonlogin"
-            android:textColor="#ffffff"
-            android:textSize="18sp" />
+            <TextView
+                android:id="@+id/tv_personalpg_name"
+                android:layout_gravity="center_vertical"
+                app:layout_marginBottomPercent="60%w"
+                android:text="@string/nonlogin"
+                android:textColor="#ffffff"
+                android:textSize="18sp" />
 
-        <TextView
-            android:id="@+id/tv_personalpg_text"
-            android:layout_gravity="bottom"
-            android:text="@string/nothing"
-            android:textColor="#ffffff"
-            android:textSize="14sp" />
+            <TextView
+                android:id="@+id/tv_personalpg_text"
+                android:layout_gravity="bottom"
+                android:text="@string/nothing"
+                android:textColor="#ffffff"
+                android:textSize="14sp" />
         </android.support.percent.PercentFrameLayout>
-        
 
         <android.support.percent.PercentFrameLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_alignParentBottom="true"
-            app:layout_marginBottomPercent="2%w"
-            app:layout_heightPercent="15%h" >
+            app:layout_heightPercent="15%h"
+            app:layout_marginBottomPercent="2%w" >
 
             <ImageView
                 android:id="@+id/img_personalpg_collect"
@@ -95,8 +94,8 @@
                 android:layout_gravity="right"
                 app:layout_marginRightPercent="38%w"
                 android:text="@string/_0"
-                android:textColor="#ffffff" 
-                android:textSize="20sp"/>
+                android:textColor="#ffffff"
+                android:textSize="20sp" />
 
             <ImageView
                 android:id="@+id/img_personalpg_like"
@@ -107,7 +106,7 @@
                 app:layout_widthPercent="10%w"
                 android:contentDescription="@string/todo"
                 android:src="@drawable/like" />
-            
+
             <TextView
                 android:id="@+id/tv_personalpg_likenum"
                 android:layout_width="wrap_content"
@@ -115,9 +114,8 @@
                 android:layout_gravity="left"
                 app:layout_marginLeftPercent="32%w"
                 android:text="@string/_0"
-                android:textColor="#ffffff" 
-                android:textSize="20sp"/>
-            
+                android:textColor="#ffffff"
+                android:textSize="20sp" />
 
             <ImageView
                 android:id="@+id/img_personalpg_cite"
@@ -128,7 +126,7 @@
                 app:layout_widthPercent="10%w"
                 android:contentDescription="@string/todo"
                 android:src="@drawable/cite" />
-            
+
             <TextView
                 android:id="@+id/tv_personalpg_citenum"
                 android:layout_width="wrap_content"
@@ -136,10 +134,8 @@
                 android:layout_gravity="right"
                 app:layout_marginRightPercent="13%w"
                 android:text="@string/_0"
-                android:textColor="#ffffff" 
-                android:textSize="20sp"/>
-            
-
+                android:textColor="#ffffff"
+                android:textSize="20sp" />
         </android.support.percent.PercentFrameLayout>
     </android.support.percent.PercentRelativeLayout>
 

@@ -10,7 +10,7 @@
         android:layout_height="0dp"
         android:layout_alignParentTop="true"
         app:layout_heightPercent="43%h" >
-        
+
         <ImageView
             android:layout_width="0dp"
             android:layout_height="0dp"
@@ -53,6 +53,16 @@
             android:hint="@string/phone_num"
             android:inputType="phone"
             android:maxLength="11" />
+
+        <Button
+            android:id="@+id/bt_login_delete"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_alignRight="@id/edt_login_phone"
+            app:layout_heightPercent="10%h"
+            app:layout_widthPercent="10%w"
+            android:background="@drawable/delete"
+            android:visibility="invisible" />
 
         <!-- 密码 -->
 

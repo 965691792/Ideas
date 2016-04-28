@@ -15,7 +15,9 @@ import org.json.JSONObject;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
 import android.text.InputType;
+import android.text.TextWatcher;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
@@ -43,6 +45,9 @@ public class LoginActivity extends Activity {
 	// 密码可见
 	private Button ibtn_login_invisible;
 
+	// 删除
+	private Button bt_login_delete;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -56,6 +61,29 @@ public class LoginActivity extends Activity {
 		txt_login_forgetpw = (TextView) findViewById(R.id.txt_login_forgetpw);
 		txt_login_register = (TextView) findViewById(R.id.txt_login_register);
 		ibtn_login_invisible = (Button) findViewById(R.id.ibtn_login_invisible);
+		bt_login_delete = (Button) findViewById(R.id.bt_login_delete);
+
+		edt_login_phone.addTextChangedListener(new TextWatcher() {
+			@Override
+			public void onTextChanged(CharSequence s, int start, int before,
+					int count) {
+				// TODO Auto-generated method stub
+				setLoginDeleteButtonVisibility();
+			}
+
+			@Override
+			public void beforeTextChanged(CharSequence s, int start, int count,
+					int after) {
+				// TODO Auto-generated method stub
+				setLoginDeleteButtonVisibility();
+			}
+
+			@Override
+			public void afterTextChanged(Editable s) {
+				// TODO Auto-generated method stub
+				setLoginDeleteButtonVisibility();
+			}
+		});
 
 		// 点击登录按钮
 		btn_login.setOnClickListener(new OnClickListener() {
@@ -114,7 +142,7 @@ public class LoginActivity extends Activity {
 
 		// 点击密码可见
 		ibtn_login_invisible.setOnClickListener(new OnClickListener() {
-			
+
 			int i = 2;
 
 			@Override
@@ -131,7 +159,22 @@ public class LoginActivity extends Activity {
 				}
 			}
 		});
+	}
 
+	public void setLoginDeleteButtonVisibility() {
+		if (edt_login_phone.getText().toString().length() == 0) {
+			bt_login_delete.setVisibility(View.INVISIBLE);
+		} else {
+			bt_login_delete.setVisibility(View.VISIBLE);
+			bt_login_delete.setOnClickListener(new OnClickListener() {
+
+				@Override
+				public void onClick(View v) {
+					// TODO Auto-generated method stub
+					edt_login_phone.getText().clear();
+				}
+			});
+		}
 	}
 
 	public String login(String urlString, String phone, String pw)

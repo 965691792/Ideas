@@ -55,6 +55,16 @@
             android:inputType="text"
             android:maxLines="1" />
 
+        <Button
+            android:id="@+id/bt_register_name_delete"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_alignRight="@+id/edt_register_name"
+            app:layout_heightPercent="10%h"
+            app:layout_widthPercent="10%w"
+            android:background="@drawable/delete"
+            android:visibility="invisible" />
+
         <!-- 手机号码 -->
 
         <ImageView
@@ -82,6 +92,17 @@
             android:hint="@string/set_phone"
             android:inputType="phone"
             android:maxLength="11" />
+
+        <Button
+            android:id="@+id/bt_register_phone_delete"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_alignRight="@+id/edt_register_phone"
+            android:layout_alignTop="@+id/edt_register_phone"
+            app:layout_heightPercent="10%h"
+            app:layout_widthPercent="10%w"
+            android:background="@drawable/delete"
+            android:visibility="invisible" />
 
         <!-- 密码 -->
 

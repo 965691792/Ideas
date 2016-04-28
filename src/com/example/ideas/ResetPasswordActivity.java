@@ -20,7 +20,9 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Handler.Callback;
 import android.os.Message;
+import android.text.Editable;
 import android.text.InputType;
+import android.text.TextWatcher;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -53,6 +55,9 @@ public class ResetPasswordActivity extends Activity implements OnClickListener,
 	// 密码可见
 	private Button ibtn_reset_invisible;
 
+	// 删除按钮
+	private Button bt_resetpassword_delete;
+
 	private boolean ready;
 
 	@Override
@@ -67,8 +72,32 @@ public class ResetPasswordActivity extends Activity implements OnClickListener,
 		edt_reset_pw = (EditText) findViewById(R.id.edt_reset_pw);
 		btn_reset = (Button) findViewById(R.id.btn_reset);
 		ibtn_reset_invisible = (Button) findViewById(R.id.ibtn_reset_invisible);
+		bt_resetpassword_delete = (Button) findViewById(R.id.bt_resetpassword_delete);
 
 		initSDK();
+
+		edt_reset_phone.addTextChangedListener(new TextWatcher() {
+
+			@Override
+			public void onTextChanged(CharSequence s, int start, int before,
+					int count) {
+				// TODO Auto-generated method stub
+				setResetDeleteButtonVisibility();
+			}
+
+			@Override
+			public void beforeTextChanged(CharSequence s, int start, int count,
+					int after) {
+				// TODO Auto-generated method stub
+				setResetDeleteButtonVisibility();
+			}
+
+			@Override
+			public void afterTextChanged(Editable s) {
+				// TODO Auto-generated method stub
+				setResetDeleteButtonVisibility();
+			}
+		});
 
 		// 点击获取验证码按钮
 		btn_reset_code.setOnClickListener(new OnClickListener() {
@@ -217,5 +246,21 @@ public class ResetPasswordActivity extends Activity implements OnClickListener,
 			e.printStackTrace();
 		}
 		return null;
+	}
+
+	public void setResetDeleteButtonVisibility() {
+		if (edt_reset_phone.getText().toString().length() == 0) {
+			bt_resetpassword_delete.setVisibility(View.INVISIBLE);
+		} else {
+			bt_resetpassword_delete.setVisibility(View.VISIBLE);
+			bt_resetpassword_delete.setOnClickListener(new OnClickListener() {
+
+				@Override
+				public void onClick(View v) {
+					// TODO Auto-generated method stub
+					edt_reset_phone.getText().clear();
+				}
+			});
+		}
 	}
 }
