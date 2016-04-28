@@ -117,7 +117,7 @@
             android:layout_height="wrap_content"
             android:layout_alignLeft="@+id/btn_login"
             android:layout_alignTop="@+id/btn_login"
-            app:layout_marginTopPercent="14%w"
+            app:layout_marginTopPercent="16%w"
             android:clickable="true"
             android:text="@string/forget_pw"
             android:textColor="#FFFFFF" />
@@ -130,7 +130,7 @@
             android:layout_height="wrap_content"
             android:layout_alignRight="@+id/btn_login"
             android:layout_alignTop="@+id/btn_login"
-            app:layout_marginTopPercent="14%w"
+            app:layout_marginTopPercent="16%w"
             android:clickable="true"
             android:text="@string/regist_user"
             android:textColor="#FFFFFF" />

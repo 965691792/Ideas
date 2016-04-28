@@ -182,7 +182,7 @@
             android:layout_height="wrap_content"
             android:layout_alignRight="@+id/btn_register"
             android:layout_alignTop="@+id/btn_register"
-            app:layout_marginTopPercent="15%w"
+            app:layout_marginTopPercent="17%w"
             android:clickable="true"
             android:text="@string/now_login"
             android:textColor="#FFFFFF" />

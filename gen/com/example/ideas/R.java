@@ -164,7 +164,7 @@ containing a value of this type.
         public static final int user_bg=0x7f020015;
     }
     public static final class id {
-        public static final int action_settings=0x7f080031;
+        public static final int action_settings=0x7f080033;
         public static final int btn_login=0x7f080005;
         public static final int btn_personalpg_answered=0x7f080015;
         public static final int btn_personalpg_collected=0x7f080016;
@@ -178,6 +178,7 @@ containing a value of this type.
         public static final int btn_register_code=0x7f080025;
         public static final int btn_reset=0x7f080030;
         public static final int btn_reset_code=0x7f08002c;
+        public static final int choosefromgallery_item=0x7f080032;
         public static final int edt_login_phone=0x7f080001;
         public static final int edt_login_pw=0x7f080003;
         public static final int edt_register_code=0x7f080024;
@@ -206,6 +207,7 @@ containing a value of this type.
         public static final int img_reset_phone=0x7f080028;
         public static final int img_reset_pw=0x7f08002d;
         public static final int rlayout_personal=0x7f080008;
+        public static final int takephoto_item=0x7f080031;
         public static final int tv_personalpg_citenum=0x7f080013;
         public static final int tv_personalpg_collectnum=0x7f08000f;
         public static final int tv_personalpg_likenum=0x7f080011;
@@ -224,13 +226,15 @@ containing a value of this type.
         public static final int activity_resetpassword=0x7f030005;
     }
     public static final class menu {
-        public static final int main=0x7f070000;
+        public static final int choosephoto=0x7f070000;
+        public static final int main=0x7f070001;
     }
     public static final class string {
         public static final int _0=0x7f05001b;
         public static final int action_settings=0x7f050002;
         public static final int answered=0x7f050013;
         public static final int app_name=0x7f050000;
+        public static final int choosefromgallery=0x7f05001d;
         public static final int code=0x7f050009;
         public static final int collected=0x7f050014;
         public static final int community=0x7f050016;
@@ -253,6 +257,7 @@ containing a value of this type.
         public static final int reset_pw=0x7f050010;
         public static final int set_password=0x7f050006;
         public static final int set_phone=0x7f050005;
+        public static final int takephote=0x7f05001c;
         public static final int todo=0x7f050003;
         public static final int user_name=0x7f050004;
     }
