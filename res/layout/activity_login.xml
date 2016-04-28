@@ -82,7 +82,7 @@
             android:inputType="textPassword"
             android:maxLength="16" />
 
-        <ImageButton
+        <Button
             android:id="@+id/ibtn_login_invisible"
             android:layout_width="0dp"
             android:layout_height="0dp"

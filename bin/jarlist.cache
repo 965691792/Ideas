@@ -1,5 +1,16 @@
 # cache for current jar dependency. DO NOT EDIT.
 # format is <lastModified> <length> <SHA-1> <path>
 # Encoding is UTF-8
+<<<<<<< HEAD
 1461557432807 1364881 91a1b1aabf740a6f64c2f73f5b0dc6611779ac8b E:\quanta杯\新建文件夹\Eclipse_android_percent_support\libs\android-support-v4.jar
 1461498080000 1364881 91a1b1aabf740a6f64c2f73f5b0dc6611779ac8b E:\quanta杯\NewIdeas\NewIdeas\Ideas\libs\android-support-v4.jar
+=======
+1456988640000 88085 d06f7ca553bedcbbc7b6a9b5be1c6f2503dc5064 D:\JAVA\adt-bundle-windows-x86_64-20140702\adt-bundle-windows-x86_64-20140702\HZM\SMSSDK\libs\SMSSDK-2.0.2.jar
+1461599288719 88085 d06f7ca553bedcbbc7b6a9b5be1c6f2503dc5064 D:\JAVA\adt-bundle-windows-x86_64-20140702\adt-bundle-windows-x86_64-20140702\HZM\Ideas\libs\SMSSDK-2.0.2.jar
+1461599288719 148357 d76d489d04db5e475927a0077c8677b0e3a9fb8a D:\JAVA\adt-bundle-windows-x86_64-20140702\adt-bundle-windows-x86_64-20140702\HZM\Ideas\libs\MobTools-2016.0303.1229.jar
+1456988640000 148357 d76d489d04db5e475927a0077c8677b0e3a9fb8a D:\JAVA\adt-bundle-windows-x86_64-20140702\adt-bundle-windows-x86_64-20140702\HZM\SMSSDK\libs\MobTools-2016.0303.1229.jar
+1461662849882 758727 efec67655f6db90757faa37201efcee2a9ec3507 D:\JAVA\adt-bundle-windows-x86_64-20140702\adt-bundle-windows-x86_64-20140702\HZM\Ideas\libs\android-support-v4.jar
+1461664665289 758727 efec67655f6db90757faa37201efcee2a9ec3507 D:\JAVA\adt-bundle-windows-x86_64-20140702\adt-bundle-windows-x86_64-20140702\HZM\Eclipse_android_percent_support\libs\android-support-v4.jar
+1456988640000 15687 daa572a22ffbbf3550a9e3e4d65045c3e3936602 D:\JAVA\adt-bundle-windows-x86_64-20140702\adt-bundle-windows-x86_64-20140702\HZM\SMSSDK\libs\MobCommons-2016.0303.1229.jar
+1461599288715 15687 daa572a22ffbbf3550a9e3e4d65045c3e3936602 D:\JAVA\adt-bundle-windows-x86_64-20140702\adt-bundle-windows-x86_64-20140702\HZM\Ideas\libs\MobCommons-2016.0303.1229.jar
+>>>>>>> 895b8e4493a864ec8083533d93e413a6576c6720

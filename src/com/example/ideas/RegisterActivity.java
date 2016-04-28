@@ -1,61 +1,58 @@
 package com.example.ideas;
 
+import java.io.BufferedReader;
+import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-
+import org.json.JSONException;
+import org.json.JSONObject;
 import cn.smssdk.EventHandler;
 import cn.smssdk.SMSSDK;
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Handler.Callback;
 import android.os.Message;
-import android.text.TextUtils;
-import android.util.Log;
-import android.view.Gravity;
+import android.text.InputType;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.FrameLayout;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.FrameLayout.LayoutParams;
 
-public class RegisterActivity extends Activity implements OnClickListener,
-		Callback {
-	// 填写从短信SDK应用后台注册得到的APPKEY
+public class RegisterActivity extends Activity implements OnClickListener {
 	private static String APPKEY = "11b9d49fdf261";
 
-	// 填写从短信SDK应用后台注册得到的APPSECRET
 	private static String APPSECRET = "c0e38f320b401703598a7b5f1d0d9084";
 
-	// 昵称
+	// 用户名
 	private EditText edt_register_name;
 
-	// 手机号输入框
+	// 用户手机
 	private EditText edt_register_phone;
 
-	// 密码
+	// 用户密码
 	private EditText edt_register_pw;
 
-	// 验证码输入框
+	// 注册验证码
 	private EditText edt_register_code;
 
 	// 获取验证码按钮
-	private ButtonListener btn_register_code;
+	private Button btn_register_code;
 
 	// 注册按钮
-	private ButtonListener btn_register;
+	private Button btn_register;
 
-	// 已有账号
+	// 已有账号，返回登录
 	private TextView txt_register_login;
+
+	// 密码可见
+	private Button ibtn_register_invisible;
 
 	private boolean ready;
 
@@ -69,51 +66,110 @@ public class RegisterActivity extends Activity implements OnClickListener,
 		edt_register_phone = (EditText) findViewById(R.id.edt_register_phone);
 		edt_register_pw = (EditText) findViewById(R.id.edt_register_pw);
 		edt_register_code = (EditText) findViewById(R.id.edt_register_code);
-		btn_register_code = (ButtonListener) findViewById(R.id.btn_register_code);
-		btn_register = (ButtonListener) findViewById(R.id.btn_register);
+		btn_register_code = (Button) findViewById(R.id.btn_register_code);
+		btn_register = (Button) findViewById(R.id.btn_register);
 		txt_register_login = (TextView) findViewById(R.id.txt_register_login);
-
-		final String phone = edt_register_phone.getText().toString();
-		final String code = edt_register_code.getText().toString();
+		ibtn_register_invisible = (Button) findViewById(R.id.ibtn_register_invisible);
 
 		initSDK();
 
-		//点击获取验证码按钮
+		// 点击获取验证码
 		btn_register_code.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				SMSSDK.getVerificationCode("86", phone);
+				SMSSDK.getVerificationCode("86", edt_register_phone.getText()
+						.toString());
 				btn_register_code.setClickable(false);
 			}
 		});
 
-		//点击注册按钮
+		// 点击注册
 		btn_register.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				SMSSDK.submitVerificationCode("86", phone, code);
+				if (edt_register_name.getText().toString().equals("")) {
+					Toast.makeText(getApplicationContext(), "昵称不能为空",
+							Toast.LENGTH_SHORT).show();
+				}
+				if (edt_register_phone.getText().toString().equals("")) {
+					Toast.makeText(getApplicationContext(), "手机号不能为空",
+							Toast.LENGTH_SHORT).show();
+				}
+				if (edt_register_pw.getText().toString().equals("")) {
+					Toast.makeText(getApplicationContext(), "密码不能为空",
+							Toast.LENGTH_SHORT).show();
+				}
+				SMSSDK.submitVerificationCode("86", edt_register_phone
+						.getText().toString(), edt_register_code.getText()
+						.toString());
 				btn_register_code.setClickable(true);
 			}
 		});
 
-		//点击已有账号按钮
+		// 点击已有账号按钮
 		txt_register_login.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				Intent intent = new Intent(RegisterActivity.this,
-						ResetPasswordActivity.class);
+						LoginActivity.class);
 				startActivity(intent);
+			}
+		});
+
+		// 点击密码可见
+		ibtn_register_invisible.setOnClickListener(new OnClickListener() {
+
+			int i = 2;
+
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				if (i % 2 == 0) {
+					edt_register_pw
+							.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+					i++;
+				} else {
+					edt_register_pw.setInputType(InputType.TYPE_CLASS_TEXT
+							| InputType.TYPE_TEXT_VARIATION_PASSWORD);
+					i++;
+				}
 			}
 		});
 	}
 
-	@Override
+	private void initSDK() {
+		// 初始化短信验证SDK
+		SMSSDK.initSDK(this, APPKEY, APPSECRET, true);
+
+		final Handler handler = new Handler();
+		EventHandler eventHandler = new EventHandler() {
+			public void afterEvent(int event, int result, Object data) {
+				Message msg = new Message();
+				msg.arg1 = event;
+				msg.arg2 = result;
+				msg.obj = data;
+				handler.sendMessage(msg);
+			}
+		};
+		// 注册监听回调
+		SMSSDK.registerEventHandler(eventHandler);
+		ready = true;
+	}
+
+	protected void onDestroy() {
+		if (ready) {
+			// 销毁监听回调接口
+			SMSSDK.unregisterAllEventHandler();
+		}
+		super.onDestroy();
+	}
+
 	public boolean handleMessage(Message msg) {
 		// TODO Auto-generated method stub
 		final String name = edt_register_name.getText().toString();
@@ -124,9 +180,17 @@ public class RegisterActivity extends Activity implements OnClickListener,
 		int result = msg.arg2;
 		if (result == SMSSDK.RESULT_COMPLETE) {
 			if (event == SMSSDK.EVENT_SUBMIT_VERIFICATION_CODE) {
-				// 短信注册成功
-				Toast.makeText(this, "注册成功", Toast.LENGTH_SHORT).show();
-				btn_register_code.sendMessage(url, name, phone, pw);
+				// 验证成功
+				try {
+					register("183.238.76.40", name, phone, pw);
+					Toast.makeText(this,
+							register("183.238.76.40", name, phone, pw),
+							Toast.LENGTH_SHORT).show();
+				} catch (JSONException e) {
+					// TODO Auto-generated catch block
+					Toast.makeText(this, "注册失败", Toast.LENGTH_SHORT).show();
+					e.printStackTrace();
+				}
 				Intent intent = new Intent(this, LoginActivity.class);
 				startActivity(intent);
 			} else {
@@ -136,30 +200,43 @@ public class RegisterActivity extends Activity implements OnClickListener,
 		return false;
 	}
 
-	private void initSDK() {
-		// 初始化短信SDK
-		SMSSDK.initSDK(this, APPKEY, APPSECRET, true);
+	public String register(String urlString, String name, String phone,
+			String pw) throws JSONException {
+		try {
+			URL url = new URL(urlString);
+			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+			conn.setRequestMethod("POST");
+			conn.setConnectTimeout(1000);
+			conn.setRequestProperty("Content-Type", "text/*;charset=utf-8");
 
-		final Handler handler = new Handler(this);
-		EventHandler eventHandler = new EventHandler() {
-			public void afterEvent(int event, int result, Object data) {
-				Message msg = new Message();
-				msg.arg1 = event;
-				msg.arg2 = result;
-				handler.sendMessage(msg);
+			DataOutputStream outputStream = new DataOutputStream(
+					conn.getOutputStream());
+			JSONObject json = new JSONObject();
+			json.put("USERNAME", name);
+			json.put("PHONE", phone);
+			json.put("PASSWORD", pw);
+			outputStream.writeBytes(json.toString());
+			outputStream.flush();
+			conn.connect();
+
+			conn.setRequestMethod("GET");
+			conn.setConnectTimeout(1000);
+			conn.setReadTimeout(1000);
+			InputStream inputStream = conn.getInputStream();
+			BufferedReader reader = new BufferedReader(new InputStreamReader(
+					inputStream));
+			StringBuilder response = new StringBuilder();
+			String line;
+			while ((line = reader.readLine()) != null) {
+				response.append(line);
 			}
-		};
-		// 注册回调监听接口
-		SMSSDK.registerEventHandler(eventHandler);
-		ready = true;
-	}
-
-	protected void onDestroy() {
-		if (ready) {
-			// 销毁回调监听接口
-			SMSSDK.unregisterAllEventHandler();
+			return response.toString();
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
-		super.onDestroy();
+		return null;
 	}
 
 	@Override
@@ -168,4 +245,8 @@ public class RegisterActivity extends Activity implements OnClickListener,
 
 	}
 
+	@Override
+	protected void onPause() {
+		super.onPause();
+	}
 }

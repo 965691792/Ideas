@@ -1,5 +1,17 @@
 package com.example.ideas;
 
+import java.io.BufferedReader;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import cn.smssdk.EventHandler;
 import cn.smssdk.SMSSDK;
 import android.app.Activity;
@@ -8,6 +20,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Handler.Callback;
 import android.os.Message;
+import android.text.InputType;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -29,13 +42,16 @@ public class ResetPasswordActivity extends Activity implements OnClickListener,
 	private EditText edt_reset_code;
 
 	// 获取验证码
-	private ButtonListener btn_reset_code;
+	private Button btn_reset_code;
 
 	// 密码
 	private EditText edt_reset_pw;
 
 	// 完成
 	private Button btn_reset;
+
+	// 密码可见
+	private Button ibtn_reset_invisible;
 
 	private boolean ready;
 
@@ -47,41 +63,62 @@ public class ResetPasswordActivity extends Activity implements OnClickListener,
 
 		edt_reset_phone = (EditText) findViewById(R.id.edt_reset_phone);
 		edt_reset_code = (EditText) findViewById(R.id.edt_reset_code);
-		btn_reset_code = (ButtonListener) findViewById(R.id.btn_reset_code);
+		btn_reset_code = (Button) findViewById(R.id.btn_reset_code);
 		edt_reset_pw = (EditText) findViewById(R.id.edt_reset_pw);
 		btn_reset = (Button) findViewById(R.id.btn_reset);
-
-		final String phone = edt_reset_phone.getText().toString();
-		final String code = edt_reset_code.getText().toString();
-		final String pw = edt_reset_code.getText().toString();
+		ibtn_reset_invisible = (Button) findViewById(R.id.ibtn_reset_invisible);
 
 		initSDK();
-		
-		//点击获取验证码按钮
+
+		// 点击获取验证码按钮
 		btn_reset_code.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				SMSSDK.getVerificationCode("86", phone);
+				SMSSDK.getVerificationCode("86", edt_reset_phone.getText()
+						.toString());
 				btn_reset_code.setClickable(false);
 			}
 		});
-		
-		//点击完成按钮
+
+		// 点击完成按钮
 		btn_reset.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				if(phone.equals("")){
-					Toast.makeText(getApplicationContext(), "手机号不能为空", Toast.LENGTH_SHORT).show();
+				if (edt_reset_phone.getText().toString().equals("")) {
+					Toast.makeText(getApplicationContext(), "手机号不能为空",
+							Toast.LENGTH_SHORT).show();
 				}
-				if(pw.equals("")){
-					Toast.makeText(getApplicationContext(), "密码不能为空", Toast.LENGTH_SHORT).show();
+				if (edt_reset_pw.getText().toString().equals("")) {
+					Toast.makeText(getApplicationContext(), "密码不能为空",
+							Toast.LENGTH_SHORT).show();
 				}
-				SMSSDK.submitVerificationCode("China", phone, code);
+				SMSSDK.submitVerificationCode("86", edt_reset_phone.getText()
+						.toString(), edt_reset_code.getText().toString());
 				btn_reset_code.setClickable(true);
+			}
+		});
+
+		// 点击密码可见
+		ibtn_reset_invisible.setOnClickListener(new OnClickListener() {
+
+			int i = 2;
+
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				if (i % 2 == 0) {
+					edt_reset_pw
+							.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+					i++;
+				} else {
+					edt_reset_pw.setInputType(InputType.TYPE_CLASS_TEXT
+							| InputType.TYPE_TEXT_VARIATION_PASSWORD);
+					i++;
+				}
 			}
 		});
 	}
@@ -121,16 +158,20 @@ public class ResetPasswordActivity extends Activity implements OnClickListener,
 	public boolean handleMessage(Message msg) {
 		// TODO Auto-generated method stub
 		final String phone = edt_reset_phone.getText().toString();
-		final String code = edt_reset_code.getText().toString();
 		final String pw = edt_reset_pw.getText().toString();
-		
+
 		int event = msg.arg1;
 		int result = msg.arg2;
 		if (result == SMSSDK.RESULT_COMPLETE) {
 			if (event == SMSSDK.EVENT_SUBMIT_VERIFICATION_CODE) {
-				// 修改成功
-				Toast.makeText(this, "修改成功", Toast.LENGTH_SHORT).show();
-				btn_reset_code.sendMessage(url, phone , pw);
+				try {
+					reset("183.238.76.40", phone, pw);
+					Toast.makeText(this, reset("183.238.76.40", phone, pw),
+							Toast.LENGTH_SHORT).show();
+				} catch (JSONException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				Intent intent = new Intent(this, LoginActivity.class);
 				startActivity(intent);
 			} else {
@@ -138,5 +179,43 @@ public class ResetPasswordActivity extends Activity implements OnClickListener,
 			}
 		}
 		return false;
+	}
+
+	public String reset(String urlString, String phone, String pw)
+			throws JSONException {
+		try {
+			URL url = new URL(urlString);
+			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+			conn.setRequestMethod("POST");
+			conn.setConnectTimeout(1000);
+			conn.setRequestProperty("Content-Type", "text/*;charset=utf-8");
+
+			DataOutputStream outputStream = new DataOutputStream(
+					conn.getOutputStream());
+			JSONObject json = new JSONObject();
+			json.put("PHONE", phone);
+			json.put("PASSWORD", pw);
+			outputStream.writeBytes(json.toString());
+			outputStream.flush();
+			conn.connect();
+
+			conn.setRequestMethod("GET");
+			conn.setConnectTimeout(1000);
+			conn.setReadTimeout(1000);
+			InputStream inputStream = conn.getInputStream();
+			BufferedReader reader = new BufferedReader(new InputStreamReader(
+					inputStream));
+			StringBuilder response = new StringBuilder();
+			String line;
+			while ((line = reader.readLine()) != null) {
+				response.append(line);
+			}
+			return response.toString();
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 }
